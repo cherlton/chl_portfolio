@@ -1,5 +1,5 @@
 import NavbarLogo from "./NavbarLogo";
-import NavbarLinks from "./NavbarLinks";
+import NavbarLinks from "./NavBarLinks";
 import NavbarBtn from "./NavbarBtn";
 import NavbarToggler from "./NavbarToggler";
 import { useSelector } from "react-redux";
