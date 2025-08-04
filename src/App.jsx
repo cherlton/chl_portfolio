@@ -8,7 +8,7 @@ import NavbarMain from "./components/navbar/NavbarMain"
 import ProjectsMain from "./components/projectSection/ProjectsMain"
 import SkillsMain from "./components/skillsSection/SkillsMain"
 import SubSkills from "./components/skillsSection/SubSkills"
-import SubHeroMain from "./components/subHeroSection/subHeroMain"
+import SubHeroMain from "./components/subHeroSection/SubHeroMain"
 
 function App() {
  
