@@ -10,7 +10,7 @@ const projects=[
         name:"Barber Shop Web Application ",
         year:"Jun2024",
         align:"right",
-        image:'../../public/images/project1.png',
+        image:'/images/project1.png',
         link:'https://github.com/cherlton/Barber-web-App-final-project-'
 
     },
@@ -18,7 +18,7 @@ const projects=[
         name:"Clothing Design Web Application ",
         year:"Jun2024",
         align:"left",
-        image:'../../public/images/project2.png',
+        image:'/images/project2.png',
         link:'https://github.com/cherlton/Clothing-Design-Web-App'
 
     },
@@ -26,7 +26,7 @@ const projects=[
         name:"TUT DEMO WEB APP ",
         year:"Aug2024",
         align:"right",
-        image:'../../public/images/project3.png',
+        image:'/images/project3.png',
         link:'https://cherlton.github.io/TUT-DEMO-WEB/contact.html'
 
     },
