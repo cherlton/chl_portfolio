@@ -7,6 +7,54 @@ import { fadeIn } from "../../framerMotion/variants";
 
 const projects=[
     {
+        name:"Textbook Trader Web Application ",
+        year:"Jun2025",
+        align:"right",
+        image:'/images/textbook.png',
+        link:'https://www.linkedin.com/feed/update/urn:li:activity:7360219911060619264/'
+
+    },
+    {
+        name:"AI mood DJ ",
+        year:"Jul2025",
+        align:"left",
+        image:'/images/AIDJ.png',
+        link:'https://www.linkedin.com/feed/update/urn:li:activity:7360247363614969856/'
+
+    },
+    {
+        name:"ISP SpeedTest Pro",
+        year:"Aug2025",
+        align:"right",
+        image:'/images/speedTest.png',
+        link:'https://www.linkedin.com/feed/update/urn:li:activity:7364728634764410882/'
+
+    },
+    {
+        name:"Lumora ",
+        year:"Jun2025",
+        align:"right",
+        image:'/images/lumora.jfif',
+        link:'https://www.linkedin.com/in/nhlangano-mhangwana-4418612a4/details/projects/'
+
+    },
+    {
+        name:"Radio Veritas ",
+        year:"Aug2024",
+        align:"left",
+        image:'/images/rv.png',
+        link:'https://radioveritas.co.za/'
+
+    },
+    {
+        name:"Maid4u",
+        year:"Jun2024",
+        align:"right",
+        image:'/images/maid4u.png',
+        link:'https://www.maid4u.co.za/'
+
+    },
+    {
         name:"Barber Shop Web Application ",
         year:"Jun2024",
         align:"right",

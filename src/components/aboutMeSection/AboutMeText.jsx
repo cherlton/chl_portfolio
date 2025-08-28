@@ -4,10 +4,9 @@ const AboutMeText = () => {
     <div className="flex flex-col md:items-start smitems-center md:text-left sm:text-center">
         <h2 className="text-6xl text-cyan  mb-10" >About Me</h2>
         <p>
-        I am, Cherlton Nhlangano Mhangwana, a Software Developer/Engineer intern at FluidIntellect, gaining hands-on experience in development.
-        Previously, I worked at Afrihost for 6 months, where I built expertise in client services and hosting solutions.
-
-        Beyond tech, I was a mentor and coordinator for university Studythons and orientations at TUT, helping students navigate academic challenges. Now, I am in the final stretch of my Computer Science diploma, set to graduate in 6 months.
+        Full-Stack Developer with 0-1 year of experience skilled in Python (Flask), Java (Spring Boot), TypeScript, React.js, and 
+        MySQL. Experienced in delivering production-ready web and mobile apps from UI to database, with proven expertise in 
+        REST API integrations, scalable backend services, and responsive frontends. Ready to start immediately.
         </p>
 
         <button className="border border-orange rounded-full py-2 px-4 text-lg flex gap-2 items-center mt-10 hover:bg-orange transition-all duration-500 cursor-pointer md:self-start sm:self-center">

@@ -32,9 +32,9 @@ const experiences=[
         company: "FluidIntellect",
         date: "2025 - Present",
         responsibilities: [
-          "Developing and maintaining web applications using Python Flask, Reactjs, and TailwindCSS.",
-          "Integrating front-end and back-end technologies for seamless user experiences.",
-       
+          " Developed responsive user interfaces using React.js, TypeScript, and Tailwind CSS, improving load speed by 30% and",
+          "enhancing user engagement. Built secure RESTful APIs with Python and Flask, supporting efficient data exchange for",
+          "over 1,000 active users and reducing backend response time by 25%.",
         ]
       }
       
