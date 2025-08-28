@@ -28,14 +28,13 @@ const experiences=[
         ]
       },
       {
-        job: "Software Engineer Intern",
+        job: "Junior Software Engineer",
         company: "FluidIntellect",
-        date: "2025 - Present",
-        responsibilities: [
-          " Developed responsive user interfaces using React.js, TypeScript, and Tailwind CSS, improving load speed by 30% and",
-          "enhancing user engagement. Built secure RESTful APIs with Python and Flask, supporting efficient data exchange for",
-          "over 1,000 active users and reducing backend response time by 25%.",
-        ]
+       date: "2025 - Aug2025",
+      responsibilities: [
+        "Built responsive UIs with React.js, TypeScript & Tailwind, improving load speed by 30%.",
+        "Developed secure Flask REST APIs, serving 1,000+ users and reducing response time by 25%."
+      ]
       }
       
       

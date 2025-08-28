@@ -33,7 +33,7 @@ const projects=[
     {
         name:"Lumora ",
         year:"Jun2025",
-        align:"right",
+        align:"left",
         image:'/images/lumora.jfif',
         link:'https://www.linkedin.com/in/nhlangano-mhangwana-4418612a4/details/projects/'
 
@@ -41,7 +41,7 @@ const projects=[
     {
         name:"Radio Veritas ",
         year:"Aug2024",
-        align:"left",
+        align:"right",
         image:'/images/rv.png',
         link:'https://radioveritas.co.za/'
 
@@ -49,7 +49,7 @@ const projects=[
     {
         name:"Maid4u",
         year:"Jun2024",
-        align:"right",
+        align:"left",
         image:'/images/maid4u.png',
         link:'https://www.maid4u.co.za/'
 
@@ -101,6 +101,7 @@ const ProjectsMain = () => {
                 year={project.year}
                 align={project.align}
                 image={project.image}
+                link={project.link}
                 />
             )
         })}
