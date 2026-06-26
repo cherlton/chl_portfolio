@@ -1,5 +1,5 @@
-import {motion} from "framer-motion";
-import {fadeIn} from "../../framerMotion/variants";
+import { motion } from "framer-motion";
+import { fadeIn } from "../../framerMotion/variants";
 
 const HeroText = () => {
   return (
@@ -8,31 +8,30 @@ const HeroText = () => {
         variants={fadeIn("down", 0.2)}
         initial="hidden"
         whileInView="show"
-        viewport={{once:false, amount:0}}
+        viewport={{ once: false, amount: 0 }}
         className="lg:text-2xl sm:text-xl uppercase text-lightGrey"
-        >
-            Full-Stack Engineer
+      >
+        Software Engineer
       </motion.h2>
       <motion.h1
-        variants={fadeIn("right",0.4)}
+        variants={fadeIn("right", 0.4)}
         initial="hidden"
         whileInView="show"
-        viewport={{once:false, amount:0}}
+        viewport={{ once: false, amount: 0 }}
         className="md:text-[2.8rem]  lg:text-6xl sm:text-4xl text-orange font-bold uppercase "
-        >
-            Cherlton Mhangwana
+      >
+        Cherlton Mhangwana
       </motion.h1>
       <motion.p
-        variants={fadeIn("up",0.6)}
+        variants={fadeIn("up", 0.6)}
         initial="hidden"
         whileInView="show"
-        viewport={{once:false, amount:0}}
+        viewport={{ once: false, amount: 0 }}
         className="text-lg mt-4"
-        >
-            A Junior Sofware Engineer at FluidIntellect and a Graduate<br/> 
-            Computer Science student at TUT
+      >
+        Software Engineer with 2+ years building scalable web apps<br />
+        across telecom, AI & HR domains. Immediately available to start.
       </motion.p>
-      
     </div>
   );
 };

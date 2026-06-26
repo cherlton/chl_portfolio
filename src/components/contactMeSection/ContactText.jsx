@@ -5,9 +5,9 @@ const ContactText = () => {
     <div>
       <h2 className='text-orange text-3xl mb-4'>Get In Touch </h2>
       <p>
-        Feel free to rach out if you'd liek to collaborate
-        <br/>
-        you are just a few clicks away! 
+        Feel free to reach out if you'd like to collaborate
+        <br />
+        You are just a few clicks away!
       </p>
     </div>
   )
