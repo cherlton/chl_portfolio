@@ -218,24 +218,21 @@ const Chat = () => {
   const headerHeight = hasActiveTool ? 100 : 180;
 
   return (
-    <div className="relative h-screen overflow-hidden bg-neutral-950 text-neutral-100">
-      <div className="absolute top-6 right-8 z-51 flex flex-col-reverse items-center justify-center gap-1 md:flex-row">
+    <div className="relative flex h-screen w-full flex-col overflow-hidden bg-neutral-950 text-neutral-100">
+      {/* Top right modal info trigger */}
+      <div className="absolute top-5 right-6 z-50 flex items-center justify-center">
         <WelcomeModal
           trigger={
-            <div className="hover:bg-neutral-800 cursor-pointer rounded-2xl px-3 py-1.5 transition-colors">
-              <Info className="text-neutral-300 h-7 w-7" />
+            <div className="cursor-pointer rounded-full bg-neutral-900/80 p-2 text-neutral-400 transition-colors hover:bg-neutral-800 hover:text-white border border-neutral-800">
+              <Info className="h-5 w-5" />
             </div>
           }
         />
       </div>
 
-      {/* Fixed Avatar Header with Gradient */}
-      <div
-        className="fixed top-0 right-0 left-0 z-50 bg-gradient-to-b from-neutral-950 via-neutral-950/90 to-transparent"
-      >
-        <div
-          className={`transition-all duration-300 ease-in-out ${hasActiveTool ? 'pt-6 pb-0' : 'py-6'}`}
-        >
+      {/* Fixed Avatar Header */}
+      <div className="fixed top-0 right-0 left-0 z-40 bg-gradient-to-b from-neutral-950 via-neutral-950/90 to-transparent">
+        <div className={`transition-all duration-300 ease-in-out ${hasActiveTool ? 'py-4' : 'py-6'}`}>
           <div className="flex justify-center">
             <ClientOnly>
               <Avatar
@@ -249,42 +246,35 @@ const Chat = () => {
             {latestUserMessage && !currentAIMessage && (
               <motion.div
                 {...MOTION_CONFIG}
-                className="mx-auto flex max-w-3xl px-4"
+                className="mx-auto flex max-w-3xl px-4 pt-3 justify-end"
               >
-                <ChatBubble variant="sent">
-                  <ChatBubbleMessage>
-                    <ChatMessageContent
-                      message={latestUserMessage}
-                      isLast={true}
-                      isLoading={false}
-                      reload={() => Promise.resolve(null)}
-                    />
-                  </ChatBubbleMessage>
-                </ChatBubble>
+                <div className="rounded-3xl bg-neutral-800/90 px-4 py-2.5 text-[15px] text-white shadow-md border border-neutral-700/60 max-w-[85%]">
+                  {latestUserMessage.content}
+                </div>
               </motion.div>
             )}
           </AnimatePresence>
         </div>
       </div>
 
-      {/* Main Content Area */}
-      <div className="container mx-auto flex h-full max-w-3xl flex-col">
-        {/* Scrollable Chat Content */}
-        <div
-          className="flex-1 overflow-y-auto px-2"
-          style={{ paddingTop: `${headerHeight}px` }}
-        >
+      {/* Full-width scroll container so scrollbar is pinned to the far right edge of the browser window */}
+      <div
+        className="flex-1 w-full overflow-y-auto overflow-x-hidden custom-scrollbar"
+        style={{ paddingTop: `${headerHeight}px`, paddingBottom: '165px' }}
+      >
+        {/* Centered ChatGPT content column */}
+        <div className="mx-auto flex min-h-full w-full max-w-3xl flex-col px-4">
           <AnimatePresence mode="wait">
             {isEmptyState ? (
               <motion.div
                 key="landing"
-                className="flex min-h-full items-center justify-center"
+                className="flex flex-1 items-center justify-center py-8"
                 {...MOTION_CONFIG}
               >
                 <ChatLanding submitQuery={submitQuery} />
               </motion.div>
             ) : currentAIMessage ? (
-              <div className="pb-4">
+              <div className="w-full pb-6">
                 <SimplifiedChatView
                   message={currentAIMessage}
                   isLoading={isLoading}
@@ -297,7 +287,7 @@ const Chat = () => {
                 <motion.div
                   key="loading"
                   {...MOTION_CONFIG}
-                  className="px-4 pt-18"
+                  className="w-full py-8"
                 >
                   <ChatBubble variant="received">
                     <ChatBubbleMessage isLoading />
@@ -307,21 +297,21 @@ const Chat = () => {
             )}
           </AnimatePresence>
         </div>
+      </div>
 
-        {/* Fixed Bottom Bar */}
-        <div className="sticky bottom-0 bg-neutral-950/95 px-2 pt-2 pb-2 backdrop-blur-xl md:px-0 md:pb-3 border-t border-neutral-900/60">
-          <div className="relative flex flex-col items-center gap-2">
-            <HelperBoost submitQuery={submitQuery} setInput={setInput} />
-            <ChatBottombar
-              input={input}
-              handleInputChange={handleInputChange}
-              handleSubmit={onSubmit}
-              isLoading={isLoading}
-              stop={handleStop}
-              isToolInProgress={isToolInProgress}
-            />
-          </div>
-          <div className="flex items-center justify-center gap-1.5 pt-1 text-xs text-neutral-500 font-medium">
+      {/* ChatGPT-style Fixed Bottom Container - Centered and aligned with content */}
+      <div className="fixed bottom-0 right-0 left-0 z-40 bg-gradient-to-t from-neutral-950 via-neutral-950/95 to-transparent pb-3 pt-4 backdrop-blur-md">
+        <div className="mx-auto flex w-full max-w-3xl flex-col items-center gap-2 px-4">
+          <HelperBoost submitQuery={submitQuery} setInput={setInput} />
+          <ChatBottombar
+            input={input}
+            handleInputChange={handleInputChange}
+            handleSubmit={onSubmit}
+            isLoading={isLoading}
+            stop={handleStop}
+            isToolInProgress={isToolInProgress}
+          />
+          <div className="flex items-center justify-center gap-2 pt-1 text-xs text-neutral-500 font-medium">
             <span>Nhlangano Cherlton Mhangwana</span>
             <span>•</span>
             <a href="/" className="hover:text-neutral-300 transition-colors">Portfolio Home</a>

@@ -443,7 +443,7 @@ export const data = [
   {
     category: 'E-Commerce Platform',
     title: 'Sneaker Trader Platform',
-    src: '/oldportfoliopreview.png',
+    src: '/fitgearpreview.png',
     content: <ProjectContent project={{ title: 'Sneaker Trader Platform' }} />,
   },
 ];

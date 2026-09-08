@@ -1,5 +1,7 @@
 'use client';
 
+import { useState } from 'react';
+import { Check, Copy, RotateCw, ThumbsDown, ThumbsUp } from 'lucide-react';
 import {
   ChatBubble,
   ChatBubbleMessage,
@@ -35,6 +37,9 @@ export function SimplifiedChatView({
   reload,
   addToolResult,
 }: SimplifiedChatViewProps) {
+  const [copied, setCopied] = useState(false);
+  const [feedback, setFeedback] = useState<'like' | 'dislike' | null>(null);
+
   if (message.role !== 'assistant') return null;
 
   // Extract tool invocations that are in "result" state
@@ -56,43 +61,89 @@ export function SimplifiedChatView({
   const hasTextContent = message.content.trim().length > 0;
   const hasTools = currentTool.length > 0;
 
-  console.log('currentTool', currentTool);
+  const handleCopy = () => {
+    if (message.content) {
+      navigator.clipboard.writeText(message.content);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }
+  };
 
   return (
-    <motion.div {...MOTION_CONFIG} className="flex h-full w-full flex-col px-4">
-      {/* Single scrollable container for both tool and text content */}
-      <div className="custom-scrollbar flex h-full w-full flex-col overflow-y-auto">
-        {/* Tool invocation result - displayed at the top */}
-        {hasTools && (
-          <div className="mb-4 w-full">
-            <ToolRenderer
-              toolInvocations={currentTool}
-              messageId={message.id || 'current-msg'}
-            />
-          </div>
-        )}
+    <motion.div {...MOTION_CONFIG} className="flex w-full flex-col space-y-4">
+      {/* Tool invocation result - displayed at the top */}
+      {hasTools && (
+        <div className="w-full">
+          <ToolRenderer
+            toolInvocations={currentTool}
+            messageId={message.id || 'current-msg'}
+          />
+        </div>
+      )}
 
-        {/* Text content */}
-        {hasTextContent && (
-          <div className="w-full">
-            <ChatBubble variant="received" className="w-full">
-              <ChatBubbleMessage className="w-full">
-                <ChatMessageContent
-                  message={message}
-                  isLast={true}
-                  isLoading={isLoading}
-                  reload={reload}
-                  addToolResult={addToolResult}
-                  skipToolRendering={true}
-                />
-              </ChatBubbleMessage>
-            </ChatBubble>
-          </div>
-        )}
+      {/* Text content with ChatGPT styling */}
+      {hasTextContent && (
+        <div className="w-full text-neutral-100">
+          <ChatMessageContent
+            message={message}
+            isLast={true}
+            isLoading={isLoading}
+            reload={reload}
+            addToolResult={addToolResult}
+            skipToolRendering={true}
+          />
 
-        {/* Add some padding at the bottom for better scrolling experience */}
-        <div className="pb-4"></div>
-      </div>
+          {/* ChatGPT-style Action Bar under assistant messages */}
+          <div className="mt-3 flex items-center gap-1 text-neutral-400">
+            <button
+              onClick={handleCopy}
+              className="flex h-8 items-center gap-1.5 rounded-lg px-2 text-xs hover:bg-neutral-800 hover:text-white transition-colors"
+              title="Copy response"
+            >
+              {copied ? (
+                <>
+                  <Check className="h-3.5 w-3.5 text-green-400" />
+                  <span className="text-green-400 font-medium">Copied</span>
+                </>
+              ) : (
+                <>
+                  <Copy className="h-3.5 w-3.5" />
+                </>
+              )}
+            </button>
+
+            <button
+              onClick={() => setFeedback(feedback === 'like' ? null : 'like')}
+              className={`flex h-8 w-8 items-center justify-center rounded-lg hover:bg-neutral-800 transition-colors ${
+                feedback === 'like' ? 'text-green-400' : 'hover:text-white'
+              }`}
+              title="Good response"
+            >
+              <ThumbsUp className="h-3.5 w-3.5" />
+            </button>
+
+            <button
+              onClick={() => setFeedback(feedback === 'dislike' ? null : 'dislike')}
+              className={`flex h-8 w-8 items-center justify-center rounded-lg hover:bg-neutral-800 transition-colors ${
+                feedback === 'dislike' ? 'text-red-400' : 'hover:text-white'
+              }`}
+              title="Bad response"
+            >
+              <ThumbsDown className="h-3.5 w-3.5" />
+            </button>
+
+            {reload && (
+              <button
+                onClick={() => reload()}
+                className="flex h-8 w-8 items-center justify-center rounded-lg hover:bg-neutral-800 hover:text-white transition-colors"
+                title="Regenerate response"
+              >
+                <RotateCw className="h-3.5 w-3.5" />
+              </button>
+            )}
+          </div>
+        </div>
+      )}
     </motion.div>
   );
 }

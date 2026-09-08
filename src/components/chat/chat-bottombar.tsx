@@ -3,7 +3,7 @@
 
 import { ChatRequestOptions } from 'ai';
 import { motion } from 'framer-motion';
-import { ArrowUp } from 'lucide-react';
+import { ArrowUp, Mic, Plus, Sparkles, Square } from 'lucide-react';
 import React, { useEffect } from 'react';
 
 interface ChatBottombarProps {
@@ -48,14 +48,30 @@ export default function ChatBottombar({
     }
   }, [inputRef]);
 
+  const hasContent = input.trim().length > 0;
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
-      className="w-full pb-1 md:pb-2"
+      className="w-full"
     >
-      <form onSubmit={handleSubmit} className="relative w-full md:px-4">
-        <div className="mx-auto flex items-center rounded-full border border-neutral-800 bg-neutral-900/90 py-2.5 pr-2 pl-6 shadow-xl backdrop-blur-xl transition-colors hover:border-neutral-700">
+      <form onSubmit={handleSubmit} className="w-full">
+        {/* ChatGPT Style Input Container */}
+        <div className="flex w-full items-center gap-2 rounded-[28px] border border-neutral-800 bg-[#212121] py-2 pl-3 pr-3 shadow-2xl transition-all focus-within:border-neutral-700 hover:border-neutral-700/80">
+          {/* Left Plus Button */}
+          <button
+            type="button"
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-neutral-400 transition-colors hover:bg-neutral-800 hover:text-white"
+            title="Add prompt / Attach"
+            onClick={() => {
+              if (inputRef.current) inputRef.current.focus();
+            }}
+          >
+            <Plus className="h-5 w-5" />
+          </button>
+
+          {/* Input text field */}
           <input
             ref={inputRef}
             type="text"
@@ -67,27 +83,59 @@ export default function ChatBottombar({
                 ? ''
                 : isToolInProgress
                 ? 'Processing response...'
-                : 'Ask Cherlton anything…'
+                : 'Ask anything...'
             }
-            className={`w-full border-none bg-transparent text-base placeholder:text-neutral-500 focus:outline-none ${
+            className={`w-full border-none bg-transparent text-[15px] placeholder:text-neutral-500 focus:outline-none ${
               disabled ? 'text-neutral-500' : 'text-neutral-100'
             }`}
-            disabled={isToolInProgress || isLoading || disabled}
+            disabled={isToolInProgress || disabled}
           />
 
-          <button
-            type="submit"
-            disabled={isLoading || !input.trim() || isToolInProgress || disabled}
-            className="flex items-center justify-center rounded-full bg-blue-600 p-2 text-white transition-colors hover:bg-blue-500 disabled:opacity-50"
-            onClick={(e) => {
-              if (isLoading) {
-                e.preventDefault();
-                stop();
-              }
-            }}
-          >
-            <ArrowUp className="h-5 w-5" />
-          </button>
+          {/* Right Actions */}
+          <div className="flex items-center gap-1.5 shrink-0">
+            {/* Think Pill */}
+            <div className="hidden sm:flex items-center gap-1 rounded-full border border-neutral-700/60 bg-neutral-800/80 px-2.5 py-1 text-xs font-medium text-neutral-400 select-none">
+              <Sparkles className="h-3 w-3 text-sky-400" />
+              <span>Think</span>
+            </div>
+
+            {/* Mic / Voice Icon */}
+            <button
+              type="button"
+              className="flex h-9 w-9 items-center justify-center rounded-full text-neutral-400 transition-colors hover:bg-neutral-800 hover:text-white"
+              title="Voice input"
+              onClick={() => {
+                if (inputRef.current) inputRef.current.focus();
+              }}
+            >
+              <Mic className="h-4 w-4" />
+            </button>
+
+            {/* Send / Stop Button */}
+            {isLoading ? (
+              <button
+                type="button"
+                onClick={stop}
+                className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-black transition-all hover:bg-neutral-200 active:scale-95 shadow-sm"
+                title="Stop generating"
+              >
+                <Square className="h-3.5 w-3.5 fill-black" />
+              </button>
+            ) : (
+              <button
+                type="submit"
+                disabled={!hasContent || isToolInProgress || disabled}
+                className={`flex h-9 w-9 items-center justify-center rounded-full transition-all duration-200 ${
+                  hasContent
+                    ? 'bg-white text-black hover:bg-neutral-200 shadow-sm cursor-pointer'
+                    : 'bg-neutral-800 text-neutral-500 cursor-not-allowed'
+                }`}
+                title="Send prompt"
+              >
+                <ArrowUp className="h-4 w-4 stroke-[2.5]" />
+              </button>
+            )}
+          </div>
         </div>
       </form>
     </motion.div>

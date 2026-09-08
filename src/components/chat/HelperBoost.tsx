@@ -163,88 +163,35 @@ export default function HelperBoost({
     setOpen(false);
   };
 
-  const toggleVisibility = () => {
-    setIsVisible(!isVisible);
-  };
-
   return (
     <>
       <Drawer.Root open={open} onOpenChange={setOpen}>
         <div className="w-full">
-          {/* Toggle Button */}
-          <div
-            className={
-              isVisible
-                ? 'mb-2 flex justify-center'
-                : 'mb-0 flex justify-center'
-            }
-          >
-            <button
-              onClick={toggleVisibility}
-              className="flex items-center gap-1 px-3 py-1 text-xs text-gray-500 transition-colors hover:text-gray-700"
-            >
-              {isVisible ? (
-                <>
-                  <ChevronDown size={14} />
-                  Hide quick questions
-                </>
-              ) : (
-                <>
-                  <ChevronUp size={14} />
-                  Show quick questions
-                </>
-              )}
-            </button>
-          </div>
-
-          {/* HelperBoost Content */}
-          {isVisible && (
-            <div className="w-full">
-              <div
-                className="flex w-full flex-wrap gap-1 md:gap-3"
-                style={{ justifyContent: 'safe center' }}
+          {/* HelperBoost Ribbon Chips */}
+          <div className="custom-scrollbar flex w-full items-center justify-start sm:justify-center gap-2 overflow-x-auto py-1 px-1 [scrollbar-width:none]">
+            {questionConfig.map(({ key, color, icon: Icon }) => (
+              <button
+                key={key}
+                type="button"
+                onClick={() => handleQuestionClick(key)}
+                className="flex shrink-0 items-center gap-2 rounded-full border border-neutral-800 bg-[#212121] px-3.5 py-1.5 text-xs font-medium text-neutral-300 shadow-sm transition-all hover:border-neutral-700 hover:bg-neutral-800 hover:text-white active:scale-95 cursor-pointer"
               >
-                {questionConfig.map(({ key, color, icon: Icon }) => (
-                  <Button
-                    key={key}
-                    onClick={() => handleQuestionClick(key)}
-                    variant="outline"
-                    className="h-auto min-w-[100px] flex-shrink-0 cursor-pointer rounded-xl border border-neutral-800 bg-neutral-900/80 px-4 py-2.5 shadow-md backdrop-blur-sm transition-all hover:bg-neutral-800 hover:border-neutral-700 active:scale-95"
-                  >
-                    <div className="flex items-center gap-2.5 text-neutral-200">
-                      <Icon size={18} strokeWidth={2} color={color} />
-                      <span className="text-sm font-medium">{key}</span>
-                    </div>
-                  </Button>
-                ))}
+                <Icon size={14} strokeWidth={2.2} color={color} />
+                <span>{key}</span>
+              </button>
+            ))}
 
-                {/* Need Inspiration Button */}
-                <TooltipProvider>
-                  <Tooltip delayDuration={0}>
-                    <TooltipTrigger asChild>
-                      <Drawer.Trigger className="group relative flex flex-shrink-0 items-center justify-center">
-                        <motion.div
-                          className="flex h-auto cursor-pointer items-center space-x-1 rounded-xl border border-neutral-800 bg-neutral-900/80 px-4 py-2.5 text-sm shadow-md backdrop-blur-sm transition-all hover:bg-neutral-800 hover:border-neutral-700"
-                          whileHover={{ scale: 1 }}
-                          whileTap={{ scale: 0.98 }}
-                        >
-                          <div className="flex items-center gap-2 text-neutral-200">
-                            <CircleEllipsis
-                              className="h-[20px] w-[18px]"
-                              strokeWidth={2}
-                            />
-                          </div>
-                        </motion.div>
-                      </Drawer.Trigger>
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <AnimatedChevron />
-                    </TooltipContent>
-                  </Tooltip>
-                </TooltipProvider>
-              </div>
-            </div>
-          )}
+            <Drawer.Trigger asChild>
+              <button
+                type="button"
+                className="flex shrink-0 items-center gap-1.5 rounded-full border border-neutral-800 bg-[#212121] px-3 py-1.5 text-xs font-medium text-neutral-400 shadow-sm transition-all hover:border-neutral-700 hover:bg-neutral-800 hover:text-white active:scale-95 cursor-pointer"
+                title="More prompt ideas"
+              >
+                <CircleEllipsis size={15} />
+                <span>More</span>
+              </button>
+            </Drawer.Trigger>
+          </div>
         </div>
 
         {/* Drawer Content */}
