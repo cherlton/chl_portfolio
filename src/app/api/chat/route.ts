@@ -51,7 +51,7 @@ export async function POST(req: Request) {
     };
 
     const result = streamText({
-      model: google('gemini-1.5-flash') as any,
+      model: google('gemini-1.5-flash'),
       messages,
       toolCallStreaming: true,
       tools,
