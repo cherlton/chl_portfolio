@@ -11,6 +11,7 @@ import { Message } from 'ai/react';
 import { motion } from 'framer-motion';
 import ChatMessageContent from './chat-message-content';
 import ToolRenderer from './tool-renderer';
+import { normalizeChatResponse } from '@/lib/chat-response';
 
 interface SimplifiedChatViewProps {
   message: Message;
@@ -63,7 +64,7 @@ export function SimplifiedChatView({
 
   const handleCopy = () => {
     if (message.content) {
-      navigator.clipboard.writeText(message.content);
+      navigator.clipboard.writeText(normalizeChatResponse(message.content));
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     }

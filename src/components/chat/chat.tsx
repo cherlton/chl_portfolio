@@ -16,7 +16,7 @@ import {
   ChatBubbleMessage,
 } from '@/components/ui/chat/chat-bubble';
 import WelcomeModal from '@/components/welcome-modal';
-import { Info } from 'lucide-react';
+import { Info, LoaderCircle } from 'lucide-react';
 import HelperBoost from './HelperBoost';
 
 // ClientOnly component for client-side rendering
@@ -88,6 +88,8 @@ const Chat = () => {
   const [autoSubmitted, setAutoSubmitted] = useState(false);
   const [loadingSubmit, setLoadingSubmit] = useState(false);
   const [isTalking, setIsTalking] = useState(false);
+  const [headerHeight, setHeaderHeight] = useState(180);
+  const headerRef = useRef<HTMLDivElement>(null);
 
   const {
     messages,
@@ -210,12 +212,24 @@ const Chat = () => {
     setIsTalking(false);
   };
 
+  useEffect(() => {
+    const header = headerRef.current;
+    if (!header) return;
+
+    const updateHeaderHeight = () => {
+      setHeaderHeight(Math.ceil(header.getBoundingClientRect().height) + 16);
+    };
+
+    updateHeaderHeight();
+    const observer = new ResizeObserver(updateHeaderHeight);
+    observer.observe(header);
+
+    return () => observer.disconnect();
+  }, [hasActiveTool, latestUserMessage]);
+
   // Check if this is the initial empty state (no messages)
   const isEmptyState =
     !currentAIMessage && !latestUserMessage && !loadingSubmit;
-
-  // Calculate header height based on hasActiveTool
-  const headerHeight = hasActiveTool ? 100 : 180;
 
   return (
     <div className="relative flex h-screen w-full flex-col overflow-hidden bg-neutral-950 text-neutral-100">
@@ -231,7 +245,10 @@ const Chat = () => {
       </div>
 
       {/* Fixed Avatar Header */}
-      <div className="fixed top-0 right-0 left-0 z-40 bg-gradient-to-b from-neutral-950 via-neutral-950/90 to-transparent">
+      <div
+        ref={headerRef}
+        className="fixed top-0 right-0 left-0 z-40 bg-gradient-to-b from-neutral-950 via-neutral-950/90 to-transparent"
+      >
         <div className={`transition-all duration-300 ease-in-out ${hasActiveTool ? 'py-4' : 'py-6'}`}>
           <div className="flex justify-center">
             <ClientOnly>
@@ -260,7 +277,7 @@ const Chat = () => {
       {/* Full-width scroll container so scrollbar is pinned to the far right edge of the browser window */}
       <div
         className="flex-1 w-full overflow-y-auto overflow-x-hidden custom-scrollbar"
-        style={{ paddingTop: `${headerHeight}px`, paddingBottom: '165px' }}
+        style={{ paddingTop: headerHeight, paddingBottom: 165 }}
       >
         {/* Centered ChatGPT content column */}
         <div className="mx-auto flex min-h-full w-full max-w-3xl flex-col px-4">
@@ -275,6 +292,11 @@ const Chat = () => {
               </motion.div>
             ) : currentAIMessage ? (
               <div className="w-full pb-6">
+                {isLoading && !currentAIMessage.content.trim() && (
+                  <div className="flex w-full items-center justify-center py-8" role="status" aria-label="Generating response">
+                    <LoaderCircle className="h-7 w-7 animate-spin text-sky-400" />
+                  </div>
+                )}
                 <SimplifiedChatView
                   message={currentAIMessage}
                   isLoading={isLoading}

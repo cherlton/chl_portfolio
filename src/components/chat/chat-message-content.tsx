@@ -10,6 +10,7 @@ import {
 } from '@/components/ui/collapsible';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import { useState } from 'react';
+import { normalizeChatResponse } from '@/lib/chat-response';
 
 export type ChatMessageContentProps = {
   message: Message;
@@ -80,7 +81,7 @@ export default function ChatMessageContent({
       if (part.type !== 'text' || !part.text) return null;
 
       // Split content by code block markers
-      const contentParts = part.text.split('```');
+      const contentParts = normalizeChatResponse(part.text).split('```');
 
       return (
         <div key={partIndex} className="w-full space-y-4">

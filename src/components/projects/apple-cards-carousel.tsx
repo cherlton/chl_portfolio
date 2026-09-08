@@ -18,6 +18,7 @@ import React, {
 
 type Card = {
   src: string;
+  liveUrl?: string;
   title: string;
   category: string;
   content: React.ReactNode;
@@ -293,8 +294,35 @@ export const Card = ({
           fill
           className="absolute inset-0 z-10 object-cover"
         />
+        {card.liveUrl && <LivePreview url={card.liveUrl} title={card.title} />}
       </motion.button>
     </>
+  );
+};
+
+const LivePreview = ({ url, title }: { url: string; title: string }) => {
+  const [loaded, setLoaded] = useState(false);
+
+  return (
+    <div className="pointer-events-none absolute inset-0 z-20 overflow-hidden bg-white">
+      <iframe
+        src={url}
+        title={`${title} live preview`}
+        loading="lazy"
+        sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+        onLoad={() => setLoaded(true)}
+        className={cn(
+          'absolute top-0 left-0 border-0 transition-opacity duration-300',
+          loaded ? 'opacity-100' : 'opacity-0'
+        )}
+        style={{
+          width: '768px',
+          height: '1104px',
+          transform: 'scale(0.29)',
+          transformOrigin: 'top left',
+        }}
+      />
+    </div>
   );
 };
 

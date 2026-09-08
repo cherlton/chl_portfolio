@@ -56,10 +56,15 @@ const PROJECT_CONTENT = [
       'REST APIs',
     ],
     date: '2025',
+    liveUrl: 'https://safetynet-pied.vercel.app/',
     links: [
       {
         name: 'GitHub Repository',
-        url: 'https://github.com/cherlton',
+        url: 'https://github.com/cherlton/Safetynet',
+      },
+      {
+        name: 'Live Project',
+        url: 'https://safetynet-pied.vercel.app/',
       },
       {
         name: 'LinkedIn Overview',
@@ -92,10 +97,15 @@ const PROJECT_CONTENT = [
       'REST APIs',
     ],
     date: '2025',
+    liveUrl: 'https://super-ai-zeta-nine.vercel.app/',
     links: [
       {
-        name: 'GitHub Profile',
-        url: 'https://github.com/cherlton',
+        name: 'GitHub Repository',
+        url: 'https://github.com/cherlton/super-AI',
+      },
+      {
+        name: 'Live Project',
+        url: 'https://super-ai-zeta-nine.vercel.app/',
       },
       {
         name: 'LinkedIn Project Update',
@@ -127,6 +137,9 @@ const PROJECT_CONTENT = [
       'B-BBEE',
     ],
     date: '2025 - 2026',
+    liveUrl: 'https://labourx.app/',
+    readme:
+      'Labour X is a workforce and HR operations platform for employee onboarding, staff records, HR documentation, and approval workflows. The platform was designed around responsive interfaces, POPIA and B-BBEE compliance, and reducing repetitive administrative work for HR teams.',
     links: [
       {
         name: 'GitHub Profile',
@@ -135,6 +148,10 @@ const PROJECT_CONTENT = [
       {
         name: 'LinkedIn Profile',
         url: 'https://linkedin.com/in/nhlangano-mhangwana-4418612a4',
+      },
+      {
+        name: 'Live Project',
+        url: 'https://labourx.app/',
       },
     ],
     images: [
@@ -161,6 +178,9 @@ const PROJECT_CONTENT = [
       'REST APIs',
     ],
     date: '2025 - 2026',
+    liveUrl: 'https://www.sisolconnex.com/',
+    readme:
+      'SisolConnex is a recruiter-facing talent platform focused on discovering and managing candidate profiles. The project prioritised clear navigation, responsive layouts, and a consistent experience across desktop, tablet, and mobile screens.',
     links: [
       {
         name: 'GitHub Profile',
@@ -169,6 +189,10 @@ const PROJECT_CONTENT = [
       {
         name: 'LinkedIn Profile',
         url: 'https://linkedin.com/in/nhlangano-mhangwana-4418612a4',
+      },
+      {
+        name: 'Live Project',
+        url: 'https://www.sisolconnex.com/',
       },
     ],
     images: [
@@ -183,16 +207,25 @@ const PROJECT_CONTENT = [
     ],
   },
   {
-    title: 'Mood DJ Backend',
+    title: 'Mood DJ',
     subtitle: 'Sentiment-Based Music Recommendation Service',
     description:
       'A backend service built with Python and Flask that analyzes mood and emotional intent to dynamically generate tailored music playlists and recommendations. Features fast caching and RESTful endpoints.',
     techStack: ['Python', 'Flask', 'REST APIs', 'Query Caching', 'JSON'],
     date: '2024',
+    liveUrl: 'https://mood-dj-mu.vercel.app/',
     links: [
       {
         name: 'GitHub Repository',
-        url: 'https://github.com/cherlton',
+        url: 'https://github.com/cherlton/Mood-Dj',
+      },
+      {
+        name: 'Live Project',
+        url: 'https://mood-dj-mu.vercel.app/',
+      },
+      {
+        name: 'LinkedIn Profile',
+        url: 'https://linkedin.com/in/nhlangano-mhangwana-4418612a4',
       },
     ],
     images: [
@@ -203,82 +236,31 @@ const PROJECT_CONTENT = [
     ],
   },
   {
-    title: 'Email Builder',
-    subtitle: 'Interactive Drag-and-Drop Template Generator',
-    description:
-      'Component-driven visual email template builder developed in React and TypeScript. Enables marketers and developers to assemble responsive, cross-client HTML email newsletters effortlessly.',
-    techStack: ['React', 'TypeScript', 'Tailwind CSS', 'HTML Email Standards'],
-    date: '2024',
-    links: [
-      {
-        name: 'GitHub Repository',
-        url: 'https://github.com/cherlton',
-      },
-    ],
-    images: [
-      {
-        src: '/datai3.png',
-        alt: 'Email Builder Interface',
-      },
-    ],
-  },
-  {
-    title: 'Textbook Trader',
-    subtitle: 'Peer-to-Peer Academic Marketplace',
-    description:
-      'Student marketplace web application facilitating peer-to-peer textbook exchanges, listings, price comparisons, and seller communications for university students.',
-    techStack: ['React', 'Node.js', 'PostgreSQL', 'REST API', 'Auth'],
-    date: '2024',
-    links: [
-      {
-        name: 'GitHub Repository',
-        url: 'https://github.com/cherlton',
-      },
-    ],
-    images: [
-      {
-        src: '/trans1.png',
-        alt: 'Textbook Trader Marketplace',
-      },
-    ],
-  },
-  {
-    title: 'Network Testing App',
+    title: 'Network ISP Speed Test',
     subtitle: 'Network Diagnostics & SLA Monitoring Tool',
     description:
       'Network diagnostics tool built to test latency, packet stability, and ISP connection bottlenecks. Inspired by technical support engineering experience at Afrihost.',
     techStack: ['Python', 'Networking', 'Sockets', 'ISP Diagnostics'],
     date: '2024',
+    liveUrl: 'https://network-testing-app-beta.vercel.app/',
     links: [
       {
-        name: 'GitHub Profile',
-        url: 'https://github.com/cherlton',
+        name: 'GitHub Repository',
+        url: 'https://github.com/cherlton/network_testingApp',
+      },
+      {
+        name: 'Live Project',
+        url: 'https://network-testing-app-beta.vercel.app/',
+      },
+      {
+        name: 'LinkedIn Profile',
+        url: 'https://linkedin.com/in/nhlangano-mhangwana-4418612a4',
       },
     ],
     images: [
       {
         src: '/minishell1.png',
         alt: 'Network Testing Utility',
-      },
-    ],
-  },
-  {
-    title: 'Sneaker Trader Platform',
-    subtitle: 'E-Commerce & Collectibles Trade Hub',
-    description:
-      'Online marketplace platform designed for sneaker enthusiasts to browse authenticated listings, submit trade proposals, and manage personal collections.',
-    techStack: ['React', 'TypeScript', 'Tailwind CSS', 'State Management'],
-    date: '2023 - 2024',
-    links: [
-      {
-        name: 'GitHub Profile',
-        url: 'https://github.com/cherlton',
-      },
-    ],
-    images: [
-      {
-        src: '/oldport1.png',
-        alt: 'Sneaker Trader Hub',
       },
     ],
   },
@@ -290,6 +272,8 @@ interface ProjectProps {
   description?: string;
   techStack?: string[];
   date?: string;
+  liveUrl?: string;
+  readme?: string;
   links?: { name: string; url: string }[];
   images?: { src: string; alt: string }[];
 }
@@ -311,6 +295,14 @@ const ProjectContent = ({ project }: { project: ProjectProps }) => {
           </div>
 
           <p className="text-secondary-foreground font-sans text-base leading-relaxed md:text-lg">
+            {projectData.readme && (
+              <span className="mb-4 block">
+                <span className="mb-2 block text-sm font-semibold tracking-wide text-neutral-500 uppercase dark:text-neutral-400">
+                  README
+                </span>
+                {projectData.readme}
+              </span>
+            )}
             {projectData.description}
           </p>
 
@@ -387,63 +379,51 @@ const ProjectContent = ({ project }: { project: ProjectProps }) => {
 // Main data export with Cherlton's projects
 export const data = [
   {
+    category: 'Backend & Security API',
+    title: 'SafetyNet API',
+    src: '/defaipreview.png',
+    liveUrl: 'https://safetynet-pied.vercel.app/',
+    content: <ProjectContent project={{ title: 'SafetyNet API' }} />,
+  },
+  {
+    category: 'Backend API',
+    title: 'Mood DJ',
+    src: '/youbotpreview.png',
+    liveUrl: 'https://mood-dj-mu.vercel.app/',
+    content: <ProjectContent project={{ title: 'Mood DJ' }} />,
+  },
+  {
+    category: 'AI & Analytics Platform',
+    title: 'Insight Sphere',
+    src: '/fitgearpreview.png',
+    liveUrl: 'https://super-ai-zeta-nine.vercel.app/',
+    content: <ProjectContent project={{ title: 'Insight Sphere' }} />,
+  },
+  {
+    category: 'Network Diagnostics',
+    title: 'Network ISP Speed Test',
+    src: '/minishellpreview.png',
+    liveUrl: 'https://network-testing-app-beta.vercel.app/',
+    content: <ProjectContent project={{ title: 'Network ISP Speed Test' }} />,
+  },
+  {
     category: 'Mobile & AI App',
     title: 'Lumora',
     src: '/dataipreview.png',
     content: <ProjectContent project={{ title: 'Lumora' }} />,
   },
   {
-    category: 'Backend & Security API',
-    title: 'SafetyNet API',
-    src: '/defaipreview.png',
-    content: <ProjectContent project={{ title: 'SafetyNet API' }} />,
-  },
-  {
-    category: 'AI & Analytics Platform',
-    title: 'Insight Sphere',
-    src: '/fitgearpreview.png',
-    content: <ProjectContent project={{ title: 'Insight Sphere' }} />,
-  },
-  {
     category: 'Enterprise HRTech',
     title: 'Labour X',
     src: '/syntopreview.png',
+    liveUrl: 'https://labourx.app/',
     content: <ProjectContent project={{ title: 'Labour X' }} />,
   },
   {
     category: 'Web Platform',
     title: 'SisolConnex',
     src: '/ratepreview.png',
+    liveUrl: 'https://www.sisolconnex.com/',
     content: <ProjectContent project={{ title: 'SisolConnex' }} />,
-  },
-  {
-    category: 'Backend API',
-    title: 'Mood DJ Backend',
-    src: '/youbotpreview.png',
-    content: <ProjectContent project={{ title: 'Mood DJ Backend' }} />,
-  },
-  {
-    category: 'Frontend Tool',
-    title: 'Email Builder',
-    src: '/dataipreview.png',
-    content: <ProjectContent project={{ title: 'Email Builder' }} />,
-  },
-  {
-    category: 'Marketplace Platform',
-    title: 'Textbook Trader',
-    src: '/transcendancepreview.png',
-    content: <ProjectContent project={{ title: 'Textbook Trader' }} />,
-  },
-  {
-    category: 'Diagnostics Utility',
-    title: 'Network Testing App',
-    src: '/minishellpreview.png',
-    content: <ProjectContent project={{ title: 'Network Testing App' }} />,
-  },
-  {
-    category: 'E-Commerce Platform',
-    title: 'Sneaker Trader Platform',
-    src: '/fitgearpreview.png',
-    content: <ProjectContent project={{ title: 'Sneaker Trader Platform' }} />,
   },
 ];

@@ -9,6 +9,7 @@ import {
   BriefcaseBusiness,
   Laugh,
   Layers,
+  LoaderCircle,
   PartyPopper,
   UserRoundSearch,
 } from 'lucide-react';
@@ -36,11 +37,15 @@ const questionConfig = [
 /* ---------- component ---------- */
 export default function Home() {
   const [input, setInput] = useState('');
+  const [isNavigating, setIsNavigating] = useState(false);
   const router = useRouter();
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const goToChat = (query: string) =>
-    router.push(`/chat?query=${encodeURIComponent(query)}`);
+  const goToChat = (query: string) => {
+    if (!query.trim() || isNavigating) return;
+    setIsNavigating(true);
+    router.push(`/chat?query=${encodeURIComponent(query.trim())}`);
+  };
 
   /* hero animations */
   const topElementVariants: Variants = {
@@ -152,6 +157,7 @@ export default function Home() {
             <Button
               key={key}
               onClick={() => goToChat(questions[key])}
+              disabled={isNavigating}
               variant="outline"
               className="border-neutral-800/80 bg-neutral-900/60 hover:bg-neutral-800/80 hover:border-neutral-700 aspect-square w-full cursor-pointer rounded-2xl border py-8 shadow-md backdrop-blur-xl active:scale-95 md:p-8"
             >
@@ -163,6 +169,17 @@ export default function Home() {
           ))}
         </div>
       </motion.div>
+
+      {isNavigating && (
+        <div
+          className="absolute inset-0 z-50 flex items-center justify-center bg-neutral-950/85 backdrop-blur-sm"
+          role="status"
+          aria-live="polite"
+          aria-label="Opening chat"
+        >
+          <LoaderCircle className="h-10 w-10 animate-spin text-sky-400" />
+        </div>
+      )}
       <FluidCursor />
     </div>
   );
