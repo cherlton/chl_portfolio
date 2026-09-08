@@ -50,7 +50,7 @@ export async function POST(req: Request) {
       getExperience,
     };
 
-    const modelName = process.env.GEMINI_MODEL || 'gemini-1.5-flash';
+    const modelName = process.env.GEMINI_MODEL || 'gemini-3.6-flash';
     const result = streamText({
       model: google(modelName),
       messages,
