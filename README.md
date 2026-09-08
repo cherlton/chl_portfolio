@@ -47,7 +47,7 @@ Want to run this project locally? Here's what you need:
 3. **Environment variables**
    Create a `.env` file in the root directory:
    ```env
-   OPENAI_API_KEY=your_openai_api_key_here
+   GEMINI_API_KEY=your_gemini_api_key_here
    GITHUB_TOKEN=your_github_token_here
    ```
 
@@ -60,7 +60,7 @@ Want to run this project locally? Here's what you need:
    Navigate to `http://localhost:3000`
 
 ### Getting your **tokens**
-- **OpenAI API Key**: Get it from [platform.openai.com](https://platform.openai.com/api-keys)
+- **Gemini API Key**: Get it from [aistudio.google.com](https://aistudio.google.com/)
 - **GitHub Token**: Generate one at [github.com/settings/tokens](https://github.com/settings/personal-access-tokens) with repo access
 
 

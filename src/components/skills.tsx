@@ -2,86 +2,106 @@
 
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { motion } from 'framer-motion';
-import { Code, Cpu, PenTool, Users } from 'lucide-react';
+import { motion, type Variants } from 'framer-motion';
+import { Bot, CheckCircle2, Code, Cpu, Database, Smartphone, Terminal, Users } from 'lucide-react';
 
 const Skills = () => {
   const skillsData = [
     {
-      category: 'Frontend Development',
-      icon: <Code className="h-5 w-5" />,
-      skills: [
-        'HTML',
-        'CSS',
-        'JavaScript/TypeScript',
-        'Tailwind CSS',
-        'Bootstrap',
-        'Next.js',
-        'React',
-        'Vercel AI SDK',
-        'Gsap',
-      ],
+      category: 'Languages',
+      icon: <Terminal className="h-5 w-5" />,
+      skills: ['Python', 'Java', 'JavaScript', 'TypeScript', 'C#', 'PHP', 'Kotlin'],
       color: 'bg-blue-50 text-blue-600 border border-blue-200',
     },
     {
-      category: 'Backend & Systems',
-      icon: <Cpu className="h-5 w-5" />,
+      category: 'Frontend & Mobile',
+      icon: <Smartphone className="h-5 w-5" />,
       skills: [
-        'Unix',
-        'C',
-        'C++',
-        'Python',
-        'Typescript',
-        'Git',
-        'GitHub',
-        'Docker',
-        'GCP',
-        'PostgreSQL',
+        'React.js',
+        'React Native',
+        'TypeScript',
+        'Tailwind CSS',
+        'Next.js',
+        'Responsive UI Design',
+        'Cross-platform UI',
+        'OCR & AI Integration',
       ],
       color: 'bg-emerald-50 text-emerald-600 border border-emerald-200',
     },
     {
-      category: 'Design & Creative Tools',
-      icon: <PenTool className="h-5 w-5" />,
-      skills: ['Figma', 'Davinci Code', 'Illustrator', 'Canva', 'Keynote'],
+      category: 'Backend & APIs',
+      icon: <Code className="h-5 w-5" />,
+      skills: [
+        'FastAPI',
+        'Flask',
+        'Spring Boot (Java)',
+        'Node.js',
+        'C# (.NET) APIs',
+        'REST APIs',
+        'JWT Authentication',
+        '3-Tier Architecture',
+        'Twilio Webhooks',
+      ],
+      color: 'bg-purple-50 text-purple-600 border border-purple-200',
+    },
+    {
+      category: 'AI Fluency & LLMs',
+      icon: <Bot className="h-5 w-5" />,
+      skills: [
+        'Prompt Engineering',
+        'OpenAI API Integration',
+        'Anthropic Claude API',
+        'Vector Search',
+        'AI-Assisted Code Generation & Debugging',
+        'AI-Assisted Research & Docs',
+        'ChatGPT / Claude / Gemini',
+        'AI-Enabled IDEs (Cursor, VS Code, Antigravity)',
+      ],
       color: 'bg-indigo-50 text-indigo-600 border border-indigo-200',
     },
     {
-      category: 'Soft Skills',
-      icon: <Users className="h-5 w-5" />,
+      category: 'Databases, Testing & DevOps',
+      icon: <Database className="h-5 w-5" />,
       skills: [
-        'Communication',
-        'Problem-Solving',
-        'Adaptability',
-        'Learning Agility',
-        'Teamwork',
-        'Creativity',
-        'Focus',
+        'PostgreSQL',
+        'PostGIS',
+        'MySQL',
+        'ERD Modeling',
+        'Query Optimization & Caching',
+        'Docker',
+        'Git & GitHub',
+        'cPanel (Certified CPP)',
+        'CI/CD Fundamentals',
+        'Microsoft Azure (Basic)',
+        'Pytest',
+        'JUnit',
+        'Jest',
+        'API Testing',
       ],
       color: 'bg-amber-50 text-amber-600 border border-amber-200',
     },
     {
-      category: 'AI & Fullstack Engineering',
-      icon: <Cpu className="h-5 w-5" />,
+      category: 'Concepts & Soft Skills',
+      icon: <Users className="h-5 w-5" />,
       skills: [
-        'LLM Providers (ChatGPT, Whisper, Groq, Mistral & Claude)',
-        'AI Agents',
-        'Prompt engineering',
-        'Vector databases (Weaviate, Pinecone)',
-        'RAG (Retrieval-Augmented Generation)',
-        'Tool routing & calling',
-        'Hugging Face Transformers',
-        'Vercel AI SDK',
-        'Supabase',
-        'Prisma',
-        'Next.js',
+        'Agile/Scrum',
+        'OOP',
+        'Data Structures & Algorithms',
+        'API Security',
+        'POPIA & B-BBEE Regulatory Compliance',
+        'Problem-Solving',
+        'Analytical Thinking',
+        'Communication',
+        'Adaptability',
+        'Time Management',
+        'Ownership & Accountability',
       ],
-      color: 'bg-purple-50 text-purple-600 border border-purple-200',
+      color: 'bg-rose-50 text-rose-600 border border-rose-200',
     },
   ];
 
   // Animation variants
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -91,7 +111,7 @@ const Skills = () => {
     },
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
@@ -100,7 +120,7 @@ const Skills = () => {
     },
   };
 
-  const badgeVariants = {
+  const badgeVariants: Variants = {
     hidden: { opacity: 0, scale: 0.9 },
     visible: {
       opacity: 1,

@@ -1,25 +1,24 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, type Variants } from 'framer-motion';
 import Image from 'next/image';
 import React from 'react';
 
 export function Presentation() {
   // Personal information
   const profile = {
-    name: 'Raphael Giraud',
-    age: '21 years old',
-    location: 'Paris, France',
-    // Add a newline character after the emoji
+    name: 'Nhlangano Cherlton Mhangwana',
+    title: 'Software Engineer | Full-Stack & Mobile Developer',
+    location: 'Johannesburg, South Africa',
     description:
-      "Hey 👋\nI'm Raph also known as Toukoum. I'm a developer specializing in AI at 42 Paris. I'm working at LightOn AI in Paris. I'm passionate about AI, tech, Entrepreneurship and SaaS tech.",
-    src: '/profil-raph.png',
+      "Hey 👋\nI'm Cherlton, a Software Engineer with 2 years of experience building scalable web and mobile applications and APIs across telecom, AI, HRtech, and marketplace domains.\n\nProficient in Python (Flask/FastAPI), Java (Spring Boot), C# (.NET), React, TypeScript, and Kotlin for Android. Experienced in Agile delivery, cross-functional frontend/backend integration, performance optimization, and production support.\n\nImmediately available to start.",
+    src: '/cherlton-avatar.jpg',
     fallbackSrc:
-      'https://images.unsplash.com/photo-1610216705422-caa3fcb6d158?q=80&w=3560&auto=format&fit=crop&ixlib=rb-4.0.3',
+      '/cherlton-avatar.jpg',
   };
 
   // Animation variants for text elements
-  const textVariants = {
+  const textVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
@@ -29,7 +28,7 @@ export function Presentation() {
   };
 
   // Animation for the entire paragraph rather than word-by-word
-  const paragraphAnimation = {
+  const paragraphAnimation: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
@@ -81,7 +80,7 @@ export function Presentation() {
               {profile.name}
             </h1>
             <div className="mt-1 flex flex-col gap-1 md:flex-row md:items-center md:gap-4">
-              <p className="text-muted-foreground">{profile.age}</p>
+              <p className="text-muted-foreground font-medium">{profile.title}</p>
               <div className="bg-border hidden h-1.5 w-1.5 rounded-full md:block" />
               <p className="text-muted-foreground">{profile.location}</p>
             </div>
@@ -103,16 +102,24 @@ export function Presentation() {
             transition={{ delay: 0.6, duration: 0.5 }}
             className="mt-4 flex flex-wrap gap-2"
           >
-            {['AI', 'Developer', '42 Paris', 'Sport', 'SaaS Builder'].map(
-              (tag) => (
-                <span
-                  key={tag}
-                  className="bg-secondary text-secondary-foreground rounded-full px-3 py-1 text-sm"
-                >
-                  {tag}
-                </span>
-              )
-            )}
+            {[
+              'Software Engineer',
+              'Full-Stack Developer',
+              'React & React Native',
+              'Python (FastAPI/Flask)',
+              'Java (Spring Boot)',
+              'C# (.NET)',
+              'TypeScript',
+              'PostgreSQL & PostGIS',
+              'AI & LLM Integration',
+            ].map((tag) => (
+              <span
+                key={tag}
+                className="bg-secondary text-secondary-foreground rounded-full px-3 py-1 text-sm font-medium"
+              >
+                {tag}
+              </span>
+            ))}
           </motion.div>
         </div>
       </div>

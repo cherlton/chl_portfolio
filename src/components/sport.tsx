@@ -1,55 +1,65 @@
 'use client';
 
 import React from 'react';
-import { Photos, PhotoItem } from './photos';
+import { motion } from 'framer-motion';
+import { Badge } from '@/components/ui/badge';
+import { Briefcase, Rocket, Code2, Zap } from 'lucide-react';
 
 const Sports = () => {
-  const sportPhotos: PhotoItem[] = [
+  const highlights = [
     {
-      src: '/podium.jpg',
-      alt: 'On the podium after a mountain bike race',
-      caption: 'Celebrating a podium finish 3rd at the famous Roc d\'Azur',
+      icon: <Rocket className="h-5 w-5 text-blue-400" />,
+      title: 'Lumora Mobile App',
+      desc: 'Built the React Native mobile interface with OCR and AI/NLP services for real-time tap-to-define functionality.',
     },
     {
-      src: '/levens.JPG',
-      alt: 'Racing in Levens',
-      caption: 'Competing in the mountain bike world cup in Levens with some clean conditions ahah',
+      icon: <Code2 className="h-5 w-5 text-emerald-400" />,
+      title: 'SafetyNet API',
+      desc: 'WhatsApp incident reporting via Spring Boot with Anthropic Claude API for natural language extraction and PostGIS geotagging.',
     },
     {
-      src: '/marseille.JPG',
-      alt: 'Racing in Marseille',
-      caption: 'Pushing limits at the Marseille World cup',
+      icon: <Zap className="h-5 w-5 text-amber-400" />,
+      title: '25% API Speedup',
+      desc: 'Optimized backend queries and implemented caching at Fluid Intellect, improving API response times by 25%.',
     },
     {
-      src: '/transmo.JPG',
-      alt: 'Racing in the Transmaurienne',
-      caption: 'On the start line for the Transmaurienne Race in the french Alps',
+      icon: <Briefcase className="h-5 w-5 text-purple-400" />,
+      title: '30% Admin Reduction',
+      desc: 'Designed and automated HR documentation workflows at Sisol Labour Project, cutting manual administrative effort by 30%.',
     },
-    {
-      src: '/ploeuc.jpg',
-      alt: 'Racing in the World Cup',
-      caption: 'French championship in Ploeuc',
-    },
-    {
-      src: '/gueret.jpg',
-      alt: 'Racing in the World Cup',
-      caption: 'World cup in Gueret',
-    }
   ];
 
   return (
     <div className="mx-auto w-full">
       <div className="mb-8">
         <h2 className="text-foreground text-3xl font-semibold md:text-4xl">
-          My Sporting Career
+          Career Highlights
         </h2>
         <p className="mt-4 text-muted-foreground">
-          Before focusing on development, I competed at a high level in mountain biking, 
-          reaching Top 15 in the Junior World Cup and Top 10 in French Cup. Here are some highlights from my 
-          athletic journey.
+          Key milestones and achievements from my 2 years of building scalable 
+          web and mobile applications across telecom, AI, HRtech, and marketplace domains.
         </p>
       </div>
-      <Photos photos={sportPhotos} />
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {highlights.map((item, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: index * 0.1 }}
+            className="rounded-2xl bg-accent p-5 border border-border/50"
+          >
+            <div className="flex items-center gap-3 mb-2">
+              {item.icon}
+              <h3 className="text-foreground font-semibold">{item.title}</h3>
+            </div>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              {item.desc}
+            </p>
+          </motion.div>
+        ))}
+      </div>
     </div>
   );
 };

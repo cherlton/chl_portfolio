@@ -13,43 +13,48 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'Toukoum Portfolio',
+  title: 'Nhlangano Cherlton Mhangwana | Software Engineer Portfolio',
   description:
-    'Interactive portfolio with an AI-powered Memoji that answers questions about me, my skills, and my experience',
+    'Software Engineer with 2 years of experience building scalable web and mobile applications and APIs across telecom, AI, HRtech, and marketplace domains.',
   keywords: [
-    'Toukoum',
-    'Portfolio',
-    'Developer',
-    'AI',
-    'Interactive',
-    'Memoji',
-    'Web Development',
-    'Full Stack',
-    'Next.js',
+    'Nhlangano Cherlton Mhangwana',
+    'Cherlton Mhangwana',
+    'Software Engineer',
+    'Full-Stack Developer',
+    'Mobile Developer',
     'React',
+    'React Native',
+    'TypeScript',
+    'Python',
+    'FastAPI',
+    'Java Spring Boot',
+    'C# .NET',
+    'Next.js',
+    'Portfolio',
+    'Johannesburg',
   ],
   authors: [
     {
-      name: 'Toukoum',
-      url: 'https://toukoum.fr',
+      name: 'Nhlangano Cherlton Mhangwana',
+      url: 'https://chlportfolio.vercel.app',
     },
   ],
-  creator: 'Toukoum',
+  creator: 'Nhlangano Cherlton Mhangwana',
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://toukoum.fr',
-    title: 'Toukoum Portfolio',
+    url: 'https://chlportfolio.vercel.app',
+    title: 'Nhlangano Cherlton Mhangwana | Software Engineer Portfolio',
     description:
-      'Interactive portfolio with an AI-powered Memoji that answers questions about me',
-    siteName: 'Toukoum Portfolio',
+      'Software Engineer with 2 years of experience building scalable web and mobile applications across telecom, AI, HRtech, and marketplace domains.',
+    siteName: 'Cherlton Mhangwana Portfolio',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Toukoum Portfolio',
+    title: 'Nhlangano Cherlton Mhangwana | Software Engineer Portfolio',
     description:
-      'Interactive portfolio with an AI-powered Memoji that answers questions about me',
-    creator: '@toukoum',
+      'Software Engineer with 2 years of experience building scalable web and mobile applications across telecom, AI, HRtech, and marketplace domains.',
+    creator: '@cherlton',
   },
   icons: {
     icon: [
@@ -69,7 +74,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className="dark" suppressHydrationWarning>
       <head>
         <meta
           name="viewport"
@@ -79,18 +84,18 @@ export default function RootLayout({
         <Script
           defer
           data-website-id="68e067ba369b1b7f1f096056"
-          data-domain="toukoum.fr"
+          data-domain="chlportfolio.vercel.app"
           data-allow-localhost="true"
           src="https://datafa.st/js/script.js"
         ></Script>
       </head>
       <body
         className={cn(
-          'bg-background min-h-screen font-sans antialiased',
+          'bg-neutral-950 text-neutral-100 min-h-screen font-sans antialiased selection:bg-primary/30',
           inter.variable
         )}
       >
-        <main className="flex min-h-screen flex-col">{children}</main>
+        <main className="flex min-h-screen flex-col bg-neutral-950">{children}</main>
         <Toaster />
         <Analytics />
       </body>

@@ -3,25 +3,22 @@ import { z } from 'zod';
 
 export const getInternship = tool({
   description:
-    "Gives a summary of what kind of internship I'm looking for, plus my contact info and how to reach me. Use this tool when the user asks about my internship search or how to contact me for opportunities.",
+    "Gives a summary of my availability, the engineering roles I'm looking for, and my contact info. Use this tool when the user asks about hiring me, job availability, or engineering opportunities.",
   parameters: z.object({}),
   execute: async () => {
-    return `Here’s what I’m looking for 👇
+    return `Here’s my current availability and profile summary 👇
 
-- 📅 **Duration**: 6-month internship starting **September 2025**
-- 🌍 **Location**: Preferably **San Francisco** or anywhere in the **United States**
-- 🧑‍💻 **Focus**: AI development, full-stack web apps, SaaS, agentic workflows
-- 🛠️ **Stack**: Python, React/Next.js, Tailwind CSS, TypeScript, GPT, RAG, etc.
-- 💼 **Visa**: I’m based in Paris 🇫🇷 so I might need **J-1 sponsorship**
-- ✅ **What I bring**: Real experience with secure on-prem GPTs (Lighton), deepsearch engines, custom RAG tools, and hackathon wins like **ETH Oxford** & **Paris Blockchain Week**
-- 🔥 I move fast, learn faster, and I’m HUNGRYYYYY for big challenges
+- ⚡ **Availability**: **Immediately available to start**
+- 🌍 **Location**: **Johannesburg, South Africa** (Open to Remote, Hybrid, or Relocation)
+- 🎯 **Roles**: **Software Engineer**, **Full-Stack Developer**, **Mobile Developer**
+- 🛠️ **Core Stack**: Python (FastAPI/Flask), Java (Spring Boot), React, TypeScript, React Native, C# (.NET), PostgreSQL
+- 🚀 **Experience**: 2 years of production experience across telecom, AI, HRtech, and marketplace domains (Sisol Labour Project, Fluid Intellect, Afrihost)
 
-📬 **Contact me** via:
-- Email: raphaelgiraud12@gmail.com
-- LinkedIn: [linkedin.com/in/raphael-giraud](https://www.linkedin.com/in/raphael-giraud-ai/)
-- GitHub: [github.com/raphaelgiraud](https://github.com/toukoum)
-
-Let's build cool shit together ✌️
-    `;
+📬 **Contact me directly**:
+- 📧 Email: cherltonmhangwana@gmail.com
+- 📞 Phone: +27 65 242 1927
+- 💼 LinkedIn: [linkedin.com/in/nhlangano-mhangwana-4418612a4](https://linkedin.com/in/nhlangano-mhangwana-4418612a4)
+- 🐙 GitHub: [github.com/cherlton](https://github.com/cherlton)
+`;
   },
 });

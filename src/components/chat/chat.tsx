@@ -18,10 +18,6 @@ import {
 import WelcomeModal from '@/components/welcome-modal';
 import { Info } from 'lucide-react';
 import HelperBoost from './HelperBoost';
-import { FastfolioCTA } from '@/components/fastfolio-cta';
-import { FastfolioPopup } from '@/components/fastfolio-popup';
-import { PoweredByFastfolio } from '@/components/powered-by-fastfolio';
-import { FastfolioTracking } from '@/lib/fastfolio-tracking';
 
 // ClientOnly component for client-side rendering
 //@ts-ignore
@@ -42,67 +38,32 @@ const ClientOnly = ({ children }) => {
 // Define Avatar component props interface
 interface AvatarProps {
   hasActiveTool: boolean;
-  videoRef: React.RefObject<HTMLVideoElement | null>;
+  videoRef?: React.RefObject<HTMLVideoElement | null>;
   isTalking: boolean;
 }
 
 // Dynamic import of Avatar component
 const Avatar = dynamic<AvatarProps>(
   () =>
-    Promise.resolve(({ hasActiveTool, videoRef, isTalking }: AvatarProps) => {
-      // This function will only execute on the client
-      const isIOS = () => {
-        // Multiple detection methods
-        const userAgent = window.navigator.userAgent;
-        const platform = window.navigator.platform;
-        const maxTouchPoints = window.navigator.maxTouchPoints || 0;
-
-        // UserAgent-based check
-        const isIOSByUA =
-          //@ts-ignore
-          /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
-
-        // Platform-based check
-        const isIOSByPlatform = /iPad|iPhone|iPod/.test(platform);
-
-        // iPad Pro check
-        const isIPadOS =
-          //@ts-ignore
-          platform === 'MacIntel' && maxTouchPoints > 1 && !window.MSStream;
-
-        // Safari check
-        const isSafari = /Safari/.test(userAgent) && !/Chrome/.test(userAgent);
-
-        return isIOSByUA || isIOSByPlatform || isIPadOS || isSafari;
-      };
-
-      // Conditional rendering based on detection
+    Promise.resolve(({ hasActiveTool, isTalking }: AvatarProps) => {
       return (
         <div
-          className={`flex items-center justify-center rounded-full transition-all duration-300 ${hasActiveTool ? 'h-20 w-20' : 'h-28 w-28'}`}
+          className={`flex items-center justify-center rounded-full transition-all duration-300 ${hasActiveTool ? 'h-16 w-16' : 'h-24 w-24'}`}
         >
           <div
-            className="relative cursor-pointer"
+            className={`relative cursor-pointer overflow-hidden rounded-full border-2 transition-all duration-300 ${
+              isTalking
+                ? 'border-green-500 shadow-xl shadow-green-500/40 ring-4 ring-green-500/20 scale-105'
+                : 'border-neutral-700 shadow-md ring-2 ring-neutral-800'
+            } h-full w-full`}
             onClick={() => (window.location.href = '/')}
+            title="Nhlangano Cherlton Mhangwana - Back to Home"
           >
-            {isIOS() ? (
-              <img
-                src="/landing-memojis.png"
-                alt="iOS avatar"
-                className="h-full w-full scale-[1.8] object-contain"
-              />
-            ) : (
-              <video
-                ref={videoRef}
-                className="h-full w-full scale-[1.8] object-contain"
-                muted
-                playsInline
-                loop
-              >
-                <source src="/final_memojis.webm" type="video/webm" />
-                <source src="/final_memojis_ios.mp4" type="video/mp4" />
-              </video>
-            )}
+            <img
+              src="/cherlton-avatar.jpg"
+              alt="Nhlangano Cherlton Mhangwana Avatar"
+              className="h-full w-full object-cover"
+            />
           </div>
         </div>
       );
@@ -118,7 +79,7 @@ const MOTION_CONFIG = {
     duration: 0.3,
     ease: 'easeOut',
   },
-};
+} as const;
 
 const Chat = () => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
@@ -127,9 +88,6 @@ const Chat = () => {
   const [autoSubmitted, setAutoSubmitted] = useState(false);
   const [loadingSubmit, setLoadingSubmit] = useState(false);
   const [isTalking, setIsTalking] = useState(false);
-  const [showFastfolioPopup, setShowFastfolioPopup] = useState(false);
-  const [hasReachedLimit, setHasReachedLimit] = useState(false);
-  const [, forceUpdate] = useState({});
 
   const {
     messages,
@@ -152,17 +110,6 @@ const Chat = () => {
           videoRef.current.play().catch((error) => {
             console.error('Failed to play video:', error);
           });
-        }
-        
-        // Don't increment here since we already increment on submit
-        // Just check if we should show popup
-        if (FastfolioTracking.shouldShowPopup()) {
-          setTimeout(() => {
-            setShowFastfolioPopup(true);
-            if (!FastfolioTracking.hasReachedLimit()) {
-              FastfolioTracking.markPopupShown();
-            }
-          }, 2000);
         }
       }
     },
@@ -232,26 +179,7 @@ const Chat = () => {
 
   //@ts-ignore
   const submitQuery = (query) => {
-    // Check rate limit before submitting
-    if (FastfolioTracking.hasReachedLimit()) {
-      setHasReachedLimit(true);
-      setShowFastfolioPopup(true);
-      return;
-    }
-    
     if (!query.trim() || isToolInProgress) return;
-    
-    // Increment message count
-    FastfolioTracking.incrementMessageCount();
-    
-    // Force re-render to update remaining messages counter
-    forceUpdate({});
-    
-    // Check if limit reached after increment
-    if (FastfolioTracking.hasReachedLimit()) {
-      setHasReachedLimit(true);
-      setShowFastfolioPopup(true);
-    }
     
     setLoadingSubmit(true);
     append({
@@ -261,19 +189,6 @@ const Chat = () => {
   };
 
   useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.loop = true;
-      videoRef.current.muted = true;
-      videoRef.current.playsInline = true;
-      videoRef.current.pause();
-    }
-
-    // Check rate limit on mount
-    if (FastfolioTracking.hasReachedLimit()) {
-      setHasReachedLimit(true);
-      setShowFastfolioPopup(true);
-    }
-    
     if (initialQuery && !autoSubmitted) {
       setAutoSubmitted(true);
       setInput('');
@@ -281,29 +196,9 @@ const Chat = () => {
     }
   }, [initialQuery, autoSubmitted]);
 
-  useEffect(() => {
-    if (videoRef.current) {
-      if (isTalking) {
-        videoRef.current.play().catch((error) => {
-          console.error('Failed to play video:', error);
-        });
-      } else {
-        videoRef.current.pause();
-      }
-    }
-  }, [isTalking]);
-
   //@ts-ignore
   const onSubmit = (e) => {
     e.preventDefault();
-    
-    // Check rate limit
-    if (FastfolioTracking.hasReachedLimit()) {
-      setHasReachedLimit(true);
-      setShowFastfolioPopup(true);
-      return;
-    }
-    
     if (!input.trim() || isToolInProgress) return;
     submitQuery(input);
     setInput('');
@@ -313,9 +208,6 @@ const Chat = () => {
     stop();
     setLoadingSubmit(false);
     setIsTalking(false);
-    if (videoRef.current) {
-      videoRef.current.pause();
-    }
   };
 
   // Check if this is the initial empty state (no messages)
@@ -326,14 +218,12 @@ const Chat = () => {
   const headerHeight = hasActiveTool ? 100 : 180;
 
   return (
-    <div className="relative h-screen overflow-hidden">
-      <FastfolioCTA />
-      <FastfolioPopup open={showFastfolioPopup} onOpenChange={setShowFastfolioPopup} hasReachedLimit={hasReachedLimit} />
+    <div className="relative h-screen overflow-hidden bg-neutral-950 text-neutral-100">
       <div className="absolute top-6 right-8 z-51 flex flex-col-reverse items-center justify-center gap-1 md:flex-row">
         <WelcomeModal
           trigger={
-            <div className="hover:bg-accent cursor-pointer rounded-2xl px-3 py-1.5">
-              <Info className="text-accent-foreground h-8" />
+            <div className="hover:bg-neutral-800 cursor-pointer rounded-2xl px-3 py-1.5 transition-colors">
+              <Info className="text-neutral-300 h-7 w-7" />
             </div>
           }
         />
@@ -341,11 +231,7 @@ const Chat = () => {
 
       {/* Fixed Avatar Header with Gradient */}
       <div
-        className="fixed top-0 right-0 left-0 z-50"
-        style={{
-          background:
-            'linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.95) 30%, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0) 100%)',
-        }}
+        className="fixed top-0 right-0 left-0 z-50 bg-gradient-to-b from-neutral-950 via-neutral-950/90 to-transparent"
       >
         <div
           className={`transition-all duration-300 ease-in-out ${hasActiveTool ? 'pt-6 pb-0' : 'py-6'}`}
@@ -354,7 +240,6 @@ const Chat = () => {
             <ClientOnly>
               <Avatar
                 hasActiveTool={hasActiveTool}
-                videoRef={videoRef}
                 isTalking={isTalking}
               />
             </ClientOnly>
@@ -396,7 +281,7 @@ const Chat = () => {
                 className="flex min-h-full items-center justify-center"
                 {...MOTION_CONFIG}
               >
-                <ChatLanding submitQuery={submitQuery} hasReachedLimit={hasReachedLimit} />
+                <ChatLanding submitQuery={submitQuery} />
               </motion.div>
             ) : currentAIMessage ? (
               <div className="pb-4">
@@ -424,20 +309,23 @@ const Chat = () => {
         </div>
 
         {/* Fixed Bottom Bar */}
-        <div className="sticky bottom-0 bg-white px-2 pt-3 md:px-0 md:pb-4">
-          <div className="relative flex flex-col items-center gap-3">
-            <HelperBoost submitQuery={submitQuery} setInput={setInput} hasReachedLimit={hasReachedLimit} />
+        <div className="sticky bottom-0 bg-neutral-950/95 px-2 pt-2 pb-2 backdrop-blur-xl md:px-0 md:pb-3 border-t border-neutral-900/60">
+          <div className="relative flex flex-col items-center gap-2">
+            <HelperBoost submitQuery={submitQuery} setInput={setInput} />
             <ChatBottombar
-              input={hasReachedLimit ? "You've reached your message limit." : input}
-              handleInputChange={hasReachedLimit ? () => {} : handleInputChange}
+              input={input}
+              handleInputChange={handleInputChange}
               handleSubmit={onSubmit}
               isLoading={isLoading}
               stop={handleStop}
-              isToolInProgress={isToolInProgress || hasReachedLimit}
-              disabled={hasReachedLimit}
+              isToolInProgress={isToolInProgress}
             />
           </div>
-          <PoweredByFastfolio />
+          <div className="flex items-center justify-center gap-1.5 pt-1 text-xs text-neutral-500 font-medium">
+            <span>Nhlangano Cherlton Mhangwana</span>
+            <span>•</span>
+            <a href="/" className="hover:text-neutral-300 transition-colors">Portfolio Home</a>
+          </div>
         </div>
       </div>
     </div>

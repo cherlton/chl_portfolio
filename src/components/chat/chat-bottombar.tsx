@@ -3,9 +3,8 @@
 
 import { ChatRequestOptions } from 'ai';
 import { motion } from 'framer-motion';
-import { ArrowRight, ArrowUp } from 'lucide-react';
-import React, { useEffect, useState } from 'react';
-import { FastfolioTracking } from '@/lib/fastfolio-tracking';
+import { ArrowUp } from 'lucide-react';
+import React, { useEffect } from 'react';
 
 interface ChatBottombarProps {
   handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -30,12 +29,6 @@ export default function ChatBottombar({
   disabled = false,
 }: ChatBottombarProps) {
   const inputRef = React.useRef<HTMLInputElement>(null);
-  const [remainingMessages, setRemainingMessages] = useState(0);
-  
-  useEffect(() => {
-    // Update remaining messages count
-    setRemainingMessages(FastfolioTracking.getRemainingMessages());
-  }, [input]); // Update when input changes (user is typing)
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (
@@ -59,10 +52,10 @@ export default function ChatBottombar({
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="w-full pb-2 md:pb-5"
+      className="w-full pb-1 md:pb-2"
     >
       <form onSubmit={handleSubmit} className="relative w-full md:px-4">
-        <div className="mx-auto flex items-center rounded-full border border-[#E5E5E9] bg-[#ECECF0] py-2 pr-2 pl-6">
+        <div className="mx-auto flex items-center rounded-full border border-neutral-800 bg-neutral-900/90 py-2.5 pr-2 pl-6 shadow-xl backdrop-blur-xl transition-colors hover:border-neutral-700">
           <input
             ref={inputRef}
             type="text"
@@ -70,10 +63,14 @@ export default function ChatBottombar({
             onChange={handleInputChange}
             onKeyDown={handleKeyPress}
             placeholder={
-              disabled ? '' : isToolInProgress ? 'Tool is in progress...' : 'Ask me anything'
+              disabled
+                ? ''
+                : isToolInProgress
+                ? 'Processing response...'
+                : 'Ask Cherlton anything…'
             }
-            className={`text-md w-full border-none bg-transparent placeholder:text-gray-500 focus:outline-none ${
-              disabled ? 'text-muted-foreground font-medium' : 'text-black'
+            className={`w-full border-none bg-transparent text-base placeholder:text-neutral-500 focus:outline-none ${
+              disabled ? 'text-neutral-500' : 'text-neutral-100'
             }`}
             disabled={isToolInProgress || isLoading || disabled}
           />
@@ -81,7 +78,7 @@ export default function ChatBottombar({
           <button
             type="submit"
             disabled={isLoading || !input.trim() || isToolInProgress || disabled}
-            className="flex items-center justify-center rounded-full bg-[#0171E3] p-2 text-white disabled:opacity-50"
+            className="flex items-center justify-center rounded-full bg-blue-600 p-2 text-white transition-colors hover:bg-blue-500 disabled:opacity-50"
             onClick={(e) => {
               if (isLoading) {
                 e.preventDefault();
@@ -89,7 +86,7 @@ export default function ChatBottombar({
               }
             }}
           >
-            <ArrowUp className="h-6 w-6" />
+            <ArrowUp className="h-5 w-5" />
           </button>
         </div>
       </form>

@@ -35,31 +35,30 @@ interface HelperBoostProps {
 }
 
 const questions = {
-  Me: 'Who are you? I want to know more about you.',
-  Projects: 'What are your projects? What are you working on right now?',
-  Skills: 'What are your skills? Give me a list of your soft and hard skills.',
-  Fun: "What the craziest thing you've ever done? (mb?) What are your hobbies? ",
-  Contact:
-    'How can I reach you? What kind of project would make you say "yes" immediately?',
+  Me: 'Who are you? Tell me about your background and experience.',
+  Projects: 'What are your key projects? What have you built?',
+  Skills: 'What are your technical and soft skills? What is your full tech stack?',
+  Experience: 'Tell me about your work experience at Sisol, Fluid Intellect, and Afrihost.',
+  Contact: 'How can I contact or hire you? Are you available immediately?',
 };
 
 const questionConfig = [
   { key: 'Me', color: '#329696', icon: Laugh },
   { key: 'Projects', color: '#3E9858', icon: BriefcaseBusiness },
   { key: 'Skills', color: '#856ED9', icon: Layers },
-  { key: 'Fun', color: '#B95F9D', icon: PartyPopper },
+  { key: 'Experience', color: '#B95F9D', icon: PartyPopper },
   { key: 'Contact', color: '#C19433', icon: UserRoundSearch },
 ];
 
 // Helper drawer data
 const specialQuestions = [
-  'Mountain Bike you said?? Show me!',
+  'Tell me about your work experience at Sisol, Fluid Intellect, and Afrihost',
   'Who are you?',
   'Can I see your resume?',
   'What projects are you most proud of?',
-  'What are your skills?',
-  'How can I reach you?',
-  "What's the craziest thing you've ever done?",
+  'What are your technical and soft skills?',
+  'Tell me about Lumora and SafetyNet API',
+  'How can I contact or hire you?',
 ];
 
 const questionsByCategory = [
@@ -69,57 +68,56 @@ const questionsByCategory = [
     icon: UserSearch,
     questions: [
       'Who are you?',
-      'What are your passions?',
-      'How did you get started in tech?',
+      'What is your professional summary?',
+      'How did you get started in software development?',
       'Where do you see yourself in 5 years?',
     ],
   },
   {
     id: 'professional',
-    name: 'Professional',
+    name: 'Experience & Career',
     icon: BriefcaseIcon,
     questions: [
       'Can I see your resume?',
-      'What makes you a valuable team member?',
-      'Where are you working now?',
+      'Tell me about your role at Sisol Labour Project',
+      'What did you build at Fluid Intellect?',
+      'Tell me about your experience at Afrihost',
       'Why should I hire you?',
-      "What's your educational background?",
+      "What is your educational background? (TUT Computer Science)",
     ],
   },
   {
     id: 'projects',
-    name: 'Projects',
+    name: 'Key Projects',
     icon: CodeIcon,
-    questions: ['What projects are you most proud of?'],
-  },
-  {
-    id: 'skills',
-    name: 'Skills',
-    icon: GraduationCapIcon,
     questions: [
-      'What are your skills?',
-      'How was your experience at École 42?',
+      'What projects are you most proud of?',
+      'Tell me about Lumora (OCR & AI Mobile Scanner)',
+      'Tell me about SafetyNet API (Spring Boot & Claude API)',
+      'Tell me about Insight Sphere (AI Creator Intelligence)',
+      'Tell me about Labour X and SisolConnex',
     ],
   },
   {
-    id: 'fun',
-    name: 'Fun',
-    icon: PartyPopper,
+    id: 'skills',
+    name: 'Technical Skills',
+    icon: GraduationCapIcon,
     questions: [
-      'Mountain Bike you said?? Show me!',
-      "What's the craziest thing you've ever done?",
-      'Mac or PC?',
-      'What are you certain about that 90% get wrong?',
+      'What are your technical and soft skills?',
+      'What is your experience with React and React Native?',
+      'What backend frameworks do you use (Python, Java, C# .NET)?',
+      'What is your experience with AI and LLMs?',
     ],
   },
   {
     id: 'contact',
-    name: 'Contact & Future',
+    name: 'Contact & Hiring',
     icon: MailIcon,
     questions: [
-      'How can I reach you?',
-      "What kind of project would make you say 'yes' immediately?",
+      'How can I reach or hire you?',
+      'Are you immediately available to start?',
       'Where are you located?',
+      'What is your email and phone number?',
     ],
   },
 ];
@@ -209,16 +207,11 @@ export default function HelperBoost({
                 {questionConfig.map(({ key, color, icon: Icon }) => (
                   <Button
                     key={key}
-                    onClick={() => !hasReachedLimit && handleQuestionClick(key)}
+                    onClick={() => handleQuestionClick(key)}
                     variant="outline"
-                    className={`h-auto min-w-[100px] flex-shrink-0 rounded-xl border px-4 py-3 shadow-none backdrop-blur-sm transition-none ${
-                      hasReachedLimit 
-                        ? 'cursor-not-allowed border-gray-200 bg-gray-100 opacity-50' 
-                        : 'border-border hover:bg-border/30 cursor-pointer bg-white/80 active:scale-95'
-                    }`}
-                    disabled={hasReachedLimit}
+                    className="h-auto min-w-[100px] flex-shrink-0 cursor-pointer rounded-xl border border-neutral-800 bg-neutral-900/80 px-4 py-2.5 shadow-md backdrop-blur-sm transition-all hover:bg-neutral-800 hover:border-neutral-700 active:scale-95"
                   >
-                    <div className="flex items-center gap-3 text-gray-700">
+                    <div className="flex items-center gap-2.5 text-neutral-200">
                       <Icon size={18} strokeWidth={2} color={color} />
                       <span className="text-sm font-medium">{key}</span>
                     </div>
@@ -229,23 +222,17 @@ export default function HelperBoost({
                 <TooltipProvider>
                   <Tooltip delayDuration={0}>
                     <TooltipTrigger asChild>
-                      <Drawer.Trigger className="group relative flex flex-shrink-0 items-center justify-center" disabled={hasReachedLimit}>
+                      <Drawer.Trigger className="group relative flex flex-shrink-0 items-center justify-center">
                         <motion.div
-                          className={`flex h-auto items-center space-x-1 rounded-xl border px-4 py-3 text-sm backdrop-blur-sm transition-all duration-200 ${
-                            hasReachedLimit 
-                              ? 'cursor-not-allowed border-gray-200 bg-gray-100 opacity-50' 
-                              : 'hover:bg-border/30 cursor-pointer border-neutral-200 bg-white/80 dark:border-neutral-800 dark:bg-neutral-900'
-                          }`}
-                          whileHover={!hasReachedLimit ? { scale: 1 } : {}}
-                          whileTap={!hasReachedLimit ? { scale: 0.98 } : {}}
+                          className="flex h-auto cursor-pointer items-center space-x-1 rounded-xl border border-neutral-800 bg-neutral-900/80 px-4 py-2.5 text-sm shadow-md backdrop-blur-sm transition-all hover:bg-neutral-800 hover:border-neutral-700"
+                          whileHover={{ scale: 1 }}
+                          whileTap={{ scale: 0.98 }}
                         >
-                          <div className="flex items-center gap-3 text-gray-700">
+                          <div className="flex items-center gap-2 text-neutral-200">
                             <CircleEllipsis
                               className="h-[20px] w-[18px]"
-                              //style={{ color: '#3B82F6' }}
                               strokeWidth={2}
                             />
-                            {/*<span className="text-sm font-medium">More</span>*/}
                           </div>
                         </motion.div>
                       </Drawer.Trigger>
@@ -262,15 +249,15 @@ export default function HelperBoost({
 
         {/* Drawer Content */}
         <Drawer.Portal>
-          <Drawer.Overlay className="fixed inset-0 z-100 bg-black/60 backdrop-blur-xs" />
-          <Drawer.Content className="fixed right-0 bottom-0 left-0 z-100 mt-24 flex h-[80%] flex-col rounded-t-[10px] bg-gray-100 outline-none lg:h-[60%]">
-            <div className="flex-1 overflow-y-auto rounded-t-[10px] bg-white p-4">
-              <div className="mx-auto max-w-md space-y-4">
+          <Drawer.Overlay className="fixed inset-0 z-100 bg-black/70 backdrop-blur-xs" />
+          <Drawer.Content className="fixed right-0 bottom-0 left-0 z-100 mt-24 flex h-[80%] flex-col rounded-t-2xl bg-neutral-900 border-t border-neutral-800 text-neutral-100 outline-none lg:h-[65%]">
+            <div className="flex-1 overflow-y-auto rounded-t-2xl bg-neutral-950 p-4 md:p-6">
+              <div className="mx-auto max-w-xl space-y-4">
                 <div
                   aria-hidden
-                  className="mx-auto mb-8 h-1.5 w-12 flex-shrink-0 rounded-full bg-gray-300"
+                  className="mx-auto mb-6 h-1.5 w-12 flex-shrink-0 rounded-full bg-neutral-700"
                 />
-                <div className="mx-auto w-full max-w-md">
+                <div className="mx-auto w-full max-w-xl">
                   <div className="space-y-8 pb-16">
                     {questionsByCategory.map((category) => (
                       <CategorySection
@@ -309,15 +296,15 @@ function CategorySection({
   return (
     <div className="space-y-3">
       <div className="flex items-center gap-2.5 px-1">
-        <Icon className="h-5 w-5" />
-        <Drawer.Title className="text-[22px] font-medium text-gray-900">
+        <Icon className="h-5 w-5 text-blue-400" />
+        <Drawer.Title className="text-[20px] font-semibold text-neutral-100">
           {name}
         </Drawer.Title>
       </div>
 
-      <Separator className="my-4" />
+      <Separator className="my-3 border-neutral-800" />
 
-      <div className="space-y-3">
+      <div className="space-y-2.5">
         {questions.map((question, index) => (
           <QuestionItem
             key={index}
@@ -344,26 +331,22 @@ function QuestionItem({ question, onClick, isSpecial }: QuestionItemProps) {
   return (
     <motion.button
       className={cn(
-        'flex w-full items-center justify-between rounded-[10px]',
-        'text-md px-6 py-4 text-left font-normal',
+        'flex w-full items-center justify-between rounded-xl',
+        'text-sm px-5 py-3.5 text-left font-normal cursor-pointer',
         'transition-all',
         'focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500',
-        isSpecial ? 'bg-black' : 'bg-[#F7F8F9]'
+        isSpecial
+          ? 'bg-blue-600/20 border border-blue-500/40 text-blue-200 hover:bg-blue-600/30'
+          : 'bg-neutral-900 border border-neutral-800 text-neutral-200 hover:bg-neutral-800 hover:border-neutral-700'
       )}
       onClick={onClick}
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
-      whileHover={{
-        backgroundColor: isSpecial ? undefined : '#F0F0F2',
-      }}
-      whileTap={{
-        scale: 0.98,
-        backgroundColor: isSpecial ? undefined : '#E8E8EA',
-      }}
+      whileTap={{ scale: 0.99 }}
     >
       <div className="flex items-center">
-        {isSpecial && <Sparkles className="mr-2 h-4 w-4 text-white" />}
-        <span className={isSpecial ? 'font-medium text-white' : ''}>
+        {isSpecial && <Sparkles className="mr-2 h-4 w-4 text-blue-400" />}
+        <span className={isSpecial ? 'font-medium text-blue-100' : ''}>
           {question}
         </span>
       </div>
@@ -377,8 +360,8 @@ function QuestionItem({ question, onClick, isSpecial }: QuestionItemProps) {
       >
         <ChevronRight
           className={cn(
-            'h-5 w-5 shrink-0',
-            isSpecial ? 'text-white' : 'text-primary'
+            'h-4 w-4 shrink-0',
+            isSpecial ? 'text-blue-400' : 'text-neutral-500'
           )}
         />
       </motion.div>

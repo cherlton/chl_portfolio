@@ -1,8 +1,9 @@
-import { openai } from '@ai-sdk/openai';
+import { createGoogleGenerativeAI } from '@ai-sdk/google';
 import { streamText } from 'ai';
 import { SYSTEM_PROMPT } from './prompt';
 import { getContact } from './tools/getContact';
 import { getCrazy } from './tools/getCrazy';
+import { getExperience } from './tools/getExperience';
 import { getInternship } from './tools/getIntership';
 import { getPresentation } from './tools/getPresentation';
 import { getProjects } from './tools/getProjects';
@@ -11,6 +12,10 @@ import { getSkills } from './tools/getSkills';
 import { getSports } from './tools/getSport';
 
 export const maxDuration = 30;
+
+const google = createGoogleGenerativeAI({
+  apiKey: process.env.GEMINI_API_KEY || process.env.GOOGLE_GENERATIVE_AI_API_KEY,
+});
 
 // ❌ Pas besoin de l'export ici, Next.js n'aime pas ça
 function errorHandler(error: unknown) {
@@ -42,10 +47,11 @@ export async function POST(req: Request) {
       getSports,
       getCrazy,
       getInternship,
+      getExperience,
     };
 
     const result = streamText({
-      model: openai('gpt-4o-mini'),
+      model: google('gemini-1.5-flash') as any,
       messages,
       toolCallStreaming: true,
       tools,

@@ -10,7 +10,6 @@ import {
 } from '@/components/ui/dialog';
 import { motion } from 'framer-motion';
 import { X } from 'lucide-react';
-import Image from 'next/image';
 import { useRouter } from 'next/navigation'; // Importation correcte pour Next.js 13+
 import { useState } from 'react';
 
@@ -30,14 +29,8 @@ export default function WelcomeModal({ trigger }: WelcomeModalProps) {
       className="h-auto w-auto cursor-pointer rounded-2xl bg-white/30 p-3 shadow-lg backdrop-blur-lg hover:bg-white/60 focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0"
       onClick={() => setIsOpen(true)}
     >
-      <Image
-        src="/logo-toukoum.svg"
-        width={100}
-        height={100}
-        alt="Logo"
-        className="w-6 md:w-8"
-      />
-      <span className="sr-only">About Toukoum</span>
+      <span className="text-sm md:text-base font-bold text-white">CM</span>
+      <span className="sr-only">About Cherlton</span>
     </Button>
   );
 
@@ -68,11 +61,11 @@ export default function WelcomeModal({ trigger }: WelcomeModalProps) {
             {/* Header */}
             <DialogHeader className="relative flex flex-row items-start justify-between px-8 pt-8 pb-6">
               <div>
-                <DialogTitle className="flex items-center gap-2 text-4xl font-bold tracking-tight">
-                  Welcome to AI Portfolio
+                <DialogTitle className="flex items-center gap-2 text-3xl sm:text-4xl font-bold tracking-tight">
+                  Welcome to Cherlton's Portfolio
                 </DialogTitle>
-                <DialogDescription className="mt-2 text-base">
-                  {/*My interactive AI portfolio experience*/}
+                <DialogDescription className="mt-2 text-base text-muted-foreground">
+                  Nhlangano Cherlton Mhangwana • Software Engineer | Full-Stack & Mobile Developer
                 </DialogDescription>
               </div>
               <Button
@@ -88,33 +81,24 @@ export default function WelcomeModal({ trigger }: WelcomeModalProps) {
 
             {/* Content area */}
             <div className="space-y-6 overflow-y-auto px-2 py-4 md:px-8">
-              <section className="bg-accent w-full space-y-8 rounded-2xl p-8">
-                {/* What section */}
-                <div className="space-y-3">
+              <section className="bg-accent w-full space-y-6 rounded-2xl p-8">
+                {/* About section */}
+                <div className="space-y-2">
                   <h3 className="text-primary flex items-center gap-2 text-xl font-semibold">
-                    What's ????
+                    Who am I?
                   </h3>
                   <p className="text-accent-foreground text-base leading-relaxed">
-                    I'm so excited to present my{' '}
-                    <strong>brand new AI Portfolio.</strong>
-                    <br /> Whether you're a recruiter, a friend, family member,
-                    or just curious, feel free to ask anything you want!
+                    I'm <strong>Nhlangano Cherlton Mhangwana</strong>, a Software Engineer based in Johannesburg, South Africa with 2 years of experience building scalable web and mobile applications and APIs across telecom, AI, HRtech, and marketplace domains.
                   </p>
                 </div>
 
-                {/* Why section */}
-                <div className="space-y-3">
+                {/* Experience highlight */}
+                <div className="space-y-2">
                   <h3 className="text-primary flex items-center gap-2 text-xl font-semibold">
-                    Why ???
+                    What have I built?
                   </h3>
                   <p className="text-accent-foreground text-base leading-relaxed">
-                    Traditional portfolios can be limiting. <br /> They can't
-                    adapt to every visitor's specific needs. <br /> My portfolio
-                    becomes{' '}
-                    <strong>
-                      exactly what you're interested in knowing about me and my
-                      work.
-                    </strong>
+                    From leading frontend development on <strong>React + TypeScript</strong> dashboards integrated with <strong>C# (.NET)</strong> APIs at <strong>Sisol Labour Project</strong>, to building production features for 1,000+ active users with <strong>Flask & React</strong> at <strong>Fluid Intellect</strong>, to developing the <strong>Lumora</strong> mobile app with OCR and OpenAI integration — ask the chat agent anything about my projects, stack, and experience!
                   </p>
                 </div>
               </section>
@@ -124,20 +108,20 @@ export default function WelcomeModal({ trigger }: WelcomeModalProps) {
             <div className="flex flex-col items-center px-8 pt-4 pb-0 md:pb-8">
               <Button
                 onClick={() => setIsOpen(false)}
-                className="h-auto rounded-full px-4 py-3"
+                className="h-auto rounded-full px-6 py-3 font-semibold"
                 size="sm"
               >
-                Start Chatting
+                Start Exploring
               </Button>
               <div
                 className="mt-6 flex cursor-pointer flex-wrap gap-1 text-center text-sm"
                 onClick={handleContactMe}
               >
                 <p className="text-muted-foreground">
-                  If you love it, please share it! Feedback is always welcome.
+                  Interested in collaborating or hiring?
                 </p>
-                <div className="flex cursor-pointer items-center text-blue-500 hover:underline">
-                  Contact me.
+                <div className="flex cursor-pointer items-center text-blue-500 hover:underline font-medium">
+                  Contact Cherlton.
                 </div>
               </div>
             </div>

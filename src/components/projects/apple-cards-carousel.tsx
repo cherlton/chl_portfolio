@@ -140,7 +140,6 @@ export const Carousel = ({
                     duration: 0.5,
                     delay: 0.2 * index,
                     ease: 'easeOut',
-                    once: true,
                   },
                 }}
                 key={'card' + index}
@@ -153,18 +152,18 @@ export const Carousel = ({
         </div>
         <div className="mr-10 flex justify-end gap-2 md:mr-20">
           <button
-            className="relative z-40 flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 disabled:opacity-50"
+            className="relative z-40 flex h-10 w-10 items-center justify-center rounded-full bg-neutral-800 text-neutral-300 hover:bg-neutral-700 disabled:opacity-30 cursor-pointer transition-colors"
             onClick={scrollLeft}
             disabled={!canScrollLeft}
           >
-            <IconArrowNarrowLeft className="h-6 w-6 text-gray-500" />
+            <IconArrowNarrowLeft className="h-6 w-6" />
           </button>
           <button
-            className="relative z-40 flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 disabled:opacity-50"
+            className="relative z-40 flex h-10 w-10 items-center justify-center rounded-full bg-neutral-800 text-neutral-300 hover:bg-neutral-700 disabled:opacity-30 cursor-pointer transition-colors"
             onClick={scrollRight}
             disabled={!canScrollRight}
           >
-            <IconArrowNarrowRight className="h-6 w-6 text-gray-500" />
+            <IconArrowNarrowRight className="h-6 w-6" />
           </button>
         </div>
       </div>
